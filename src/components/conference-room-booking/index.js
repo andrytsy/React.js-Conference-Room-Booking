@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import DayPicker from '../day-picker'
 import BookTime from '../book-a-time'
 import './styles.scss'
 
 class ConferenceRoomBooking extends Component {
+    static propTypes = {
+        columns: PropTypes.array.isRequired
+    }
+
     state = {
         currentDay: 0
     }
@@ -36,74 +41,10 @@ class ConferenceRoomBooking extends Component {
     }
     
     getColums() {
-        // const { colums } = this.props
-        let colums = [
-            {
-                title: 'Бирюзовая',
-                color: 'aqua',
-                items: [
-                    {
-                        event: 'Meeting',
-                        user: 'Ivanov',
-                        time: '8:00 - 9:30'
-                    },
-                    {
-                        event: 'Meeting',
-                        user: 'Ivanov',
-                        time: '10:00 - 11:30'
-                    },
-                    {
-                        event: 'Meeting',
-                        user: 'Ivanov',
-                        time: '14:00 - 17:00'
-                    }
-                ]
-            },
-            {
-                title: 'Оранжевая',
-                color: 'orange',
-                items: [
-                    {
-                        event: 'Conference',
-                        user: 'Perov',
-                        time: '9:00 - 10:30'
-                    },
-                    {
-                        event: 'Bussines meeting',
-                        user: 'Ivanov',
-                        time: '11:30 - 17:00'
-                    }
-                ]
-            },
-            {
-                title: 'Синяя',
-                color: 'blue',
-                items: []
-            },
-            {
-                title: 'Сиреневая',
-                color: 'purple',
-                items: [
-                    {
-                        event: 'Conference',
-                        user: 'Perov',
-                        time: '9:00 - 9:30'
-                    },
-                    {
-                        event: 'Bussines meeting',
-                        user: 'Ivanov',
-                        time: '11:00 - 11:30'
-                    },
-                    {
-                        event: 'English',
-                        user: 'Jukov',
-                        time: '12:00 - 15:30'
-                    }
-                ]
-            }
-        ]
+        const { columns } = this.props
+        
 
-        return colums.map((col, i) => 
+        return columns.map((col, i) => 
             <BookTime 
                 callback = { this.timeSelectHandler.bind(this) }
                 title = { col.title } 
@@ -115,4 +56,4 @@ class ConferenceRoomBooking extends Component {
     }
 }
 
-export default connect(null)(ConferenceRoomBooking)
+export default connect(state => ({ columns: state.columns }))(ConferenceRoomBooking)

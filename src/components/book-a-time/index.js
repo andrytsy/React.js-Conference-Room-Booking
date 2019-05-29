@@ -92,12 +92,27 @@ class BookTime extends Component {
 
     getClassName(itemDate) {
         const { data } = this.props
-        const { color } = this.props || 'gray'
+        let { color } = this.props || 'gray'
         
         let isActive = data.find(item => item.time && ~item.time.indexOf(itemDate)) 
-        return isActive
-            ? color + '-book-time__time-list-item_active'
-            : color + '-book-time__time-list-item'
+        console.log(this.isCompleted(itemDate));
+        
+
+        if (isActive) {
+            return color + '-book-time__time-list-item_active'
+        } else if (this.isCompleted(itemDate)) {
+            return 'light-gray-book-time__time-list-item'
+        }
+        
+        return color + '-book-time__time-list-item'
+    }
+
+    isCompleted(itemDate) {
+        let date = new Date()
+        let currentTime = date.getHours() + ':' + date.getMinutes()
+        let time = itemDate.split('-')
+
+        return (this.parseTime(time[0]) - this.parseTime(currentTime)) < 0
     }
 
     getHeightItem(timeRange) {
@@ -107,8 +122,8 @@ class BookTime extends Component {
         let rowsQuantity = (this.parseTime(split[1]) - this.parseTime(split[0])) / 30
         
         return rowsQuantity !== 1 
-            ? (rowsQuantity * defaultHeight) + (rowsQuantity * defaultMargin)
-            : defaultHeight
+            ? (rowsQuantity * defaultHeight) + ((rowsQuantity - 1) * defaultMargin)
+            : 'auto'
     }
 
     parseTime(time) {

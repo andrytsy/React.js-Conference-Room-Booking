@@ -1,5 +1,6 @@
 $white: #fff;
-$ligth-gray: #ECECEE;
+$light-gray: #ECECEE;
+$medium-gray: #CACACA;
 $gray: #F8F8F8;
 $aqua: #40E0D0;
 $blue: #3D52D5;
@@ -8,10 +9,9 @@ $purple: #8D0080;
 $orange: #FF7A00;
 
 :export {
-    gray: $gray;
+    light-gray: $light-gray;
     aqua: $aqua;
     blue: $blue;
     purple: $purple;
     orange: $orange;
-    indigo: $indigo;
 }

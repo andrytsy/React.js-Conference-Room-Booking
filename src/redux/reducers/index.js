@@ -1,3 +1,5 @@
-export default (state = []) => {
+import defaultData from '../fixtures' 
+
+export default (state = defaultData) => {
     return state
 }

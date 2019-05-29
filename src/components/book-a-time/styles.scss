@@ -19,8 +19,9 @@
     font-family: 'Libre Franklin Light', Arial, sans-serif;
     padding: 0px 10px;
     margin: 5px 0px;
+    height: 70px;
     color: $color;
-    border: 1px solid $color;
+    background-color: $gray;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -45,16 +46,15 @@
     padding-bottom: 5px;
 }
 
-.gray-book-time__header { 
-    @include book-time__header($gray);
+.light-gray-book-time__header { 
+    @include book-time__header($light-gray);
 }
-.gray-book-time__time-list-item {
-    @include book-time__time-list-item($gray);
-}
-.gray-book-time__time-list-item_active {
-    @include book-time__time-list-item($gray);
-    background-color: $gray;
-    color: $white;
+.light-gray-book-time__time-list-item {
+    @include book-time__time-list-item($light-gray);
+    background-color: $white;
+    color: $medium-gray;
+    border: 1px solid $light-gray;
+    height: 68px;
 }
 
 
