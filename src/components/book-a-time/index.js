@@ -28,13 +28,11 @@ class BookTime extends Component {
     }
 
     getTimeListElements() {
-        const { start, end } = this.props
-
-        let timeList = this.getTimeList(start, end)
+        let timeList = this.getTimeList()
 
         return timeList.map((item, i) => {
-            let className = this.getClassName(item)
-            let style = { height: this.getHeightItem(item) + 'px' }
+            let className = this.getClassName(item.time)
+            let style = { height: this.getHeightItem(item.time) + 'px' }
 
             return (
                 <div 
@@ -42,8 +40,14 @@ class BookTime extends Component {
                     className = { className }
                     style = { style }
                 >
+                    <span className="book-time__time-list-item-event">
+                        { item.event }
+                    </span>
                     <span>
-                        { item }
+                        { item.time }
+                    </span>
+                    <span className="book-time__time-list-item-user">
+                        { item.user }
                     </span>
                 </div>
             )
@@ -52,23 +56,19 @@ class BookTime extends Component {
 
     getTimeList() {
         const { data } = this.props
-        let arr = data.slice()
         let defaultTimeList = this.getDefaultTimeList()
 
-        if (arr.length) {
-            let timeList = defaultTimeList.slice()
-
-            arr.forEach(time => {
-                let split = time.split('-')
-                let from = defaultTimeList.findIndex(item => ~item.indexOf(split[0]))
-                let to = defaultTimeList.findIndex(item => ~item.indexOf(split[1]))
+        if (data.length) {
+            data.forEach(item => {
+                let split = item.time.split('-')
+                let from = defaultTimeList.findIndex(item => ~item.time.indexOf(split[0]))
+                let to = defaultTimeList.findIndex(item => ~item.time.indexOf(split[1]))
 
                 if (from !== to) {
-                    timeList.splice(from, to + 1, time)
+                    let count = to - from + 1
+                    defaultTimeList.splice(from, count, item)
                 } 
             })
-
-            return timeList
         }
 
         return defaultTimeList
@@ -83,8 +83,8 @@ class BookTime extends Component {
             let sartTime = i + fullHour + ' - ' + i + halfHour
             let endTime = i + halfHour + ' - ' + (i + 1) + fullHour
 
-            arr.push(sartTime)
-            arr.push(endTime)
+            arr.push({time: sartTime})
+            arr.push({time: endTime})
         }
 
         return arr
@@ -93,8 +93,9 @@ class BookTime extends Component {
     getClassName(itemDate) {
         const { data } = this.props
         const { color } = this.props || 'gray'
-
-        return ~data.indexOf(itemDate) 
+        
+        let isActive = data.find(item => item.time && ~item.time.indexOf(itemDate)) 
+        return isActive
             ? color + '-book-time__time-list-item_active'
             : color + '-book-time__time-list-item'
     }

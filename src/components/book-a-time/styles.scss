@@ -33,8 +33,16 @@
     }
 }
 
-.book-time__time-list-item_hide {
-    display: none;
+.book-time__time-list-item-event {
+    align-self: flex-end;
+    margin-bottom: auto;
+    padding-top: 5px;
+}
+
+.book-time__time-list-item-user {
+    align-self: flex-end;
+    margin-top: auto;
+    padding-bottom: 5px;
 }
 
 .gray-book-time__header { 

@@ -41,12 +41,39 @@ class ConferenceRoomBooking extends Component {
             {
                 title: 'Бирюзовая',
                 color: 'aqua',
-                items: ['8:00 - 9:30']
+                items: [
+                    {
+                        event: 'Meeting',
+                        user: 'Ivanov',
+                        time: '8:00 - 9:30'
+                    },
+                    {
+                        event: 'Meeting',
+                        user: 'Ivanov',
+                        time: '10:00 - 11:30'
+                    },
+                    {
+                        event: 'Meeting',
+                        user: 'Ivanov',
+                        time: '14:00 - 17:00'
+                    }
+                ]
             },
             {
                 title: 'Оранжевая',
                 color: 'orange',
-                items: ['9:00 - 10:30', '11:30 - 17:00']
+                items: [
+                    {
+                        event: 'Conference',
+                        user: 'Perov',
+                        time: '9:00 - 10:30'
+                    },
+                    {
+                        event: 'Bussines meeting',
+                        user: 'Ivanov',
+                        time: '11:30 - 17:00'
+                    }
+                ]
             },
             {
                 title: 'Синяя',
@@ -56,7 +83,23 @@ class ConferenceRoomBooking extends Component {
             {
                 title: 'Сиреневая',
                 color: 'purple',
-                items: ['9:00 - 9:30', '11:00 - 11:30']
+                items: [
+                    {
+                        event: 'Conference',
+                        user: 'Perov',
+                        time: '9:00 - 9:30'
+                    },
+                    {
+                        event: 'Bussines meeting',
+                        user: 'Ivanov',
+                        time: '11:00 - 11:30'
+                    },
+                    {
+                        event: 'English',
+                        user: 'Jukov',
+                        time: '12:00 - 15:30'
+                    }
+                ]
             }
         ]
 
