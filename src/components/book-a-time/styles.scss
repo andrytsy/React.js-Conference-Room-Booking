@@ -17,12 +17,15 @@
     cursor: pointer;
     font-size: 14px;
     font-family: 'Libre Franklin Light', Arial, sans-serif;
-    padding: 28px 10px;
+    padding: 0px 10px;
     margin: 5px 0px;
     color: $color;
     border: 1px solid $color;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     @include user-select();
-    @include border-radius(5px);
+    @include border-radius(10px);
 
     &:hover {
         background-color: $color;
@@ -30,11 +33,20 @@
     }
 }
 
+.book-time__time-list-item_hide {
+    display: none;
+}
+
 .gray-book-time__header { 
     @include book-time__header($gray);
 }
 .gray-book-time__time-list-item {
     @include book-time__time-list-item($gray);
+}
+.gray-book-time__time-list-item_active {
+    @include book-time__time-list-item($gray);
+    background-color: $gray;
+    color: $white;
 }
 
 
@@ -44,6 +56,11 @@
 .aqua-book-time__time-list-item {
     @include book-time__time-list-item($aqua);
 }
+.aqua-book-time__time-list-item_active {
+    @include book-time__time-list-item($aqua);
+    background-color: $aqua;
+    color: $white;
+}
 
 
 .blue-book-time__header { 
@@ -51,6 +68,11 @@
 }
 .blue-book-time__time-list-item {
     @include book-time__time-list-item($blue);
+}
+.blue-book-time__time-list-item_active {
+    @include book-time__time-list-item($blue);
+    background-color: $blue;
+    color: $white;
 }
 
 
@@ -60,6 +82,11 @@
 .orange-book-time__time-list-item {
     @include book-time__time-list-item($orange);
 }
+.orange-book-time__time-list-item_active {
+    @include book-time__time-list-item($orange);
+    background-color: $orange;
+    color: $white;
+}
 
 
 .purple-book-time__header { 
@@ -67,4 +94,9 @@
 }
 .purple-book-time__time-list-item {
     @include book-time__time-list-item($purple);
+}
+.purple-book-time__time-list-item_active {
+    @include book-time__time-list-item($purple);
+    background-color: $purple;
+    color: $white;
 }

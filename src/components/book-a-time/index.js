@@ -13,7 +13,7 @@ class BookTime extends Component {
 
     render() {
         const { title, callback } = this.props
-        let { color } = this.props || 'gray'
+        const { color } = this.props || 'gray'
 
         return (
             <div className="book-time">
@@ -28,34 +28,91 @@ class BookTime extends Component {
     }
 
     getTimeListElements() {
-        const { data, start, end } = this.props
-        let { color } = this.props || 'gray'
+        const { start, end } = this.props
 
         let timeList = this.getTimeList(start, end)
 
         return timeList.map((item, i) => {
+            let className = this.getClassName(item)
+            let style = { height: this.getHeightItem(item) + 'px' }
+
             return (
-                <div key = { i } className = { color + '-book-time__time-list-item'}>
-                    { item }
+                <div 
+                    key = { i } 
+                    className = { className }
+                    style = { style }
+                >
+                    <span>
+                        { item }
+                    </span>
                 </div>
             )
         })
     }
 
-    // todo KISS
-    getTimeList(start = 8, end = 22) {
+    getTimeList() {
+        const { data } = this.props
+        let arr = data.slice()
+        let defaultTimeList = this.getDefaultTimeList()
+
+        if (arr.length) {
+            let timeList = defaultTimeList.slice()
+
+            arr.forEach(time => {
+                let split = time.split('-')
+                let from = defaultTimeList.findIndex(item => ~item.indexOf(split[0]))
+                let to = defaultTimeList.findIndex(item => ~item.indexOf(split[1]))
+
+                if (from !== to) {
+                    timeList.splice(from, to + 1, time)
+                } 
+            })
+
+            return timeList
+        }
+
+        return defaultTimeList
+    }
+
+    getDefaultTimeList(start = 8, end = 22) {
         let arr = []
-        let step = 30
+        let halfHour = ':30'
+        let fullHour = ':00'
 
         for (let i = start; i <= end; i++) {
-            let time1 = i + ':00 - ' + i + ':' + step
-            let time2 = i + ':' + step + ' - ' + (i + 1) + ':00'
+            let sartTime = i + fullHour + ' - ' + i + halfHour
+            let endTime = i + halfHour + ' - ' + (i + 1) + fullHour
 
-            arr.push(time1)
-            arr.push(time2)
+            arr.push(sartTime)
+            arr.push(endTime)
         }
 
         return arr
+    }
+
+    getClassName(itemDate) {
+        const { data } = this.props
+        const { color } = this.props || 'gray'
+
+        return ~data.indexOf(itemDate) 
+            ? color + '-book-time__time-list-item_active'
+            : color + '-book-time__time-list-item'
+    }
+
+    getHeightItem(timeRange) {
+        let split = timeRange.split('-')
+        let defaultHeight = 70
+        let defaultMargin = 5
+        let rowsQuantity = (this.parseTime(split[1]) - this.parseTime(split[0])) / 30
+        
+        return rowsQuantity !== 1 
+            ? (rowsQuantity * defaultHeight) + (rowsQuantity * defaultMargin)
+            : defaultHeight
+    }
+
+    parseTime(time) {
+        let split = time.split(':')
+        return parseInt(split[0]) * 60 + parseInt(split[1])
     }
 }
 

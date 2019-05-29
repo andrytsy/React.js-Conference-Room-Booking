@@ -41,12 +41,12 @@ class ConferenceRoomBooking extends Component {
             {
                 title: 'Бирюзовая',
                 color: 'aqua',
-                items: []
+                items: ['8:00 - 9:30']
             },
             {
                 title: 'Оранжевая',
                 color: 'orange',
-                items: []
+                items: ['9:00 - 10:30', '11:30 - 17:00']
             },
             {
                 title: 'Синяя',
@@ -56,7 +56,7 @@ class ConferenceRoomBooking extends Component {
             {
                 title: 'Сиреневая',
                 color: 'purple',
-                items: []
+                items: ['9:00 - 9:30', '11:00 - 11:30']
             }
         ]
 
