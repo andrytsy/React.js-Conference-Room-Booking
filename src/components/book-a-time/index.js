@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import colors from '../../styles/variables.scss'
 import './styles.scss'
 
 class BookTime extends Component {
@@ -12,16 +11,16 @@ class BookTime extends Component {
         end: PropTypes.number
     }
 
-    componentDidMount() {
-        console.log('colors', colors);
-    }
-
     render() {
         const { title, callback } = this.props
+        let { color } = this.props || 'gray'
+
         return (
             <div className="book-time">
-                <div className="book-time__header">{ title }</div>
-                <div className="book-time__time-list" onClick = { callback.bind(this) }>
+                <div className = { color + '-book-time__header'}>
+                    { title }
+                </div>
+                <div onClick = { callback.bind(this) } >
                     { this.getTimeListElements() }
                 </div>
             </div>
@@ -30,10 +29,16 @@ class BookTime extends Component {
 
     getTimeListElements() {
         const { data, start, end } = this.props
+        let { color } = this.props || 'gray'
+
         let timeList = this.getTimeList(start, end)
 
-        return timeList.map(item => {
-            return <div className="book-time__time-list-item">{ item }</div>
+        return timeList.map((item, i) => {
+            return (
+                <div key = { i } className = { color + '-book-time__time-list-item'}>
+                    { item }
+                </div>
+            )
         })
     }
 

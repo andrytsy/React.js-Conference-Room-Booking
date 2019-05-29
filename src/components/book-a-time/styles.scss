@@ -1,12 +1,70 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/variables.scss';
+
 .book-time {
     width: 274px;
     margin: 5px;
 }
 
-.book-time__header {
+@mixin book-time__header($color) {
     font-size: 24px;
     line-height: 30px;
     margin-bottom: 31px;
+    color: $color;
 }
-.book-time__time-list {}
-.book-time__time-list-item {}
+
+@mixin book-time__time-list-item($color) {
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Libre Franklin Light', Arial, sans-serif;
+    padding: 28px 10px;
+    margin: 5px 0px;
+    color: $color;
+    border: 1px solid $color;
+    @include user-select();
+    @include border-radius(5px);
+
+    &:hover {
+        background-color: $color;
+        color: $white;
+    }
+}
+
+.gray-book-time__header { 
+    @include book-time__header($gray);
+}
+.gray-book-time__time-list-item {
+    @include book-time__time-list-item($gray);
+}
+
+
+.aqua-book-time__header { 
+    @include book-time__header($aqua);
+}
+.aqua-book-time__time-list-item {
+    @include book-time__time-list-item($aqua);
+}
+
+
+.blue-book-time__header { 
+    @include book-time__header($blue);
+}
+.blue-book-time__time-list-item {
+    @include book-time__time-list-item($blue);
+}
+
+
+.orange-book-time__header { 
+    @include book-time__header($orange);
+}
+.orange-book-time__time-list-item {
+    @include book-time__time-list-item($orange);
+}
+
+
+.purple-book-time__header { 
+    @include book-time__header($purple);
+}
+.purple-book-time__time-list-item {
+    @include book-time__time-list-item($purple);
+}

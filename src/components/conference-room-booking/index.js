@@ -50,7 +50,7 @@ class ConferenceRoomBooking extends Component {
             },
             {
                 title: 'Синяя',
-                color: 'indigo',
+                color: 'blue',
                 items: []
             },
             {
@@ -64,6 +64,7 @@ class ConferenceRoomBooking extends Component {
             <BookTime 
                 callback = { this.timeSelectHandler.bind(this) }
                 title = { col.title } 
+                color = { col.color}
                 data = { col.items } 
                 key = { i } 
             />
