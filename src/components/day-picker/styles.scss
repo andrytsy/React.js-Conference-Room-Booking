@@ -1,0 +1,33 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/variables.scss';
+
+.day-picker {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+%day-picker__btn {
+    margin: 5px;
+    padding: 23px 37px;
+    color: $indigo;
+    background-color: inherit;
+    border: 1px solid $indigo;
+    @include border-radius(5px);
+    font-family: 'Libre Franklin Regular';
+    cursor: pointer;
+
+    &:hover {
+        color: $white;
+        background: $indigo;
+    }
+}
+
+.day-picker__btn_default {
+    @extend %day-picker__btn;
+} 
+.day-picker__btn_active {
+    @extend %day-picker__btn;
+    color: $white;
+    background: $indigo;
+}
