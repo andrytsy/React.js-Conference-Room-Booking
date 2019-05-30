@@ -16,7 +16,7 @@
 .booking-modal {
     padding: 30px;
     background-color: $white;
-    width: 350px;
+    width: 290px;
     margin: auto;
     display: flex;
     justify-content: center;
@@ -93,4 +93,14 @@
         color: $indigo;
         border: 1px solid $indigo;
     }
+}
+
+.booking-modal__time-pickers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.time-pickers__item {
+    width: 127px;
 }

@@ -1,0 +1,9 @@
+@mixin minus($url, $color) {
+    background: url($url) center no-repeat;
+    color: $color;
+}
+
+@mixin plus($url, $color) {
+    background: url($url) center no-repeat;
+    color: $color;
+}

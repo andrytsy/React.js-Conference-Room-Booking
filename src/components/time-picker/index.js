@@ -1,25 +1,24 @@
 import React, { Component } from 'react'
+import './styles.scss'
 
 class timePicker extends Component {
     plusTimeHandler() {
-        const { callback } = this.props
 
     }
 
     minusTimeHandler() {
-        const { callback } = this.props
-        
+
     }
 
     render() {
-        const { title, time } = this.props
+        const { title, time, minusCallback, plusCallback } = this.props
         return (
             <div>
                 <div className="time-picker__header">{ title }</div>
                 <div className="time-picker__group">
-                    <span className="time-picker__group-plus" onClick = { this.plusTimeHandler }></span>
-                    <span className="time-picker__group-time">{ time }</span>
-                    <span className="time-picker__group-minus" onClick = { this.minusTimeHandler }></span>
+                    <span className="group__minus" onClick = { minusCallback.bind(this) }></span>
+                    <span className="group__time">{ time }</span>
+                    <span className="group__plus" onClick = { plusCallback.bind(this) }></span>
                 </div>
             </div>
         )

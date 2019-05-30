@@ -13,7 +13,8 @@ class ConferenceRoomBooking extends Component {
 
     state = {
         currentDay: 0,
-        showModal: false
+        showModal: false,
+        selectedTime: ''
     }
 
     changeBookingDayHandler(currentDay) {
@@ -42,10 +43,9 @@ class ConferenceRoomBooking extends Component {
     getColums() {
         const { columns } = this.props
         
-
         return columns.map((col, i) => 
             <BookTime 
-                callback = { this.toggleModal.bind(this) }
+                callback = { this.doSelectTime.bind(this) }
                 title = { col.title } 
                 color = { col.color}
                 data = { col.items } 
@@ -54,19 +54,26 @@ class ConferenceRoomBooking extends Component {
         )
     }
 
+    doSelectTime(time) {
+        this.setState({ selectedTime: time })
+        this.toggleModal()
+    }
+
     toggleModal() {
         this.setState({ showModal: !this.state.showModal })
     }
 
     getModal() {
-        if (this.state.showModal){
+        if (this.state.showModal) {
             return (
                 <Modal 
+                    defaultTime = { this.state.selectedTime }
                     close = { this.toggleModal.bind(this) } 
                     save = { this.bookRoom.bind(this) } 
                 /> 
             )
         }
+
         return null 
     }
 

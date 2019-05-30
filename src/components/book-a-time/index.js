@@ -8,19 +8,27 @@ class BookTime extends Component {
         data: PropTypes.array.isRequired,
         callback: PropTypes.func.isRequired,
         start: PropTypes.number,
-        end: PropTypes.number
+        end: PropTypes.number,
+        color: PropTypes.string
+    }
+
+    clickHandler(event) {
+        const { callback } = this.props
+        let time = event.target.innerText
+
+        callback(time)
     }
 
     render() {
-        const { title, callback } = this.props
-        const { color } = this.props || 'gray'
+        const { title } = this.props
+        const { color } = this.props
 
         return (
             <div className="book-time">
                 <div className = { color + '-book-time__header'}>
                     { title }
                 </div>
-                <div onClick = { callback.bind(this) } >
+                <div onClick = { this.clickHandler.bind(this) } >
                     { this.getTimeListElements() }
                 </div>
             </div>
