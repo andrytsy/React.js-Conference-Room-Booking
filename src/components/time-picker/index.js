@@ -2,14 +2,6 @@ import React, { Component } from 'react'
 import './styles.scss'
 
 class timePicker extends Component {
-    plusTimeHandler() {
-
-    }
-
-    minusTimeHandler() {
-
-    }
-
     render() {
         const { title, time, minusCallback, plusCallback } = this.props
         return (

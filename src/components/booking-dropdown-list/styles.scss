@@ -1,0 +1,49 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+@import '../../styles/icons.scss';
+
+.drop-down__header {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+%drop-down__header-text {
+    height: 30px;
+    line-height: 30px;
+    color: $medium-gray;
+
+    &:hover {
+        color: $indigo;
+    }
+}
+
+.drop-down__header-text-default {
+    @extend %drop-down__header-text;
+}
+
+.drop-down__header-text-active {
+    @extend %drop-down__header-text;
+    color: $indigo;
+    margin-bottom: 30px;
+}
+
+%drop-down__header-arrow {
+    height: 30px;
+    width: 30px;
+}
+
+.drop-down__header-arrow-collapse {
+    @extend %drop-down__header-arrow;
+    background: url('../../styles/icons/arrow-down.svg') center no-repeat;
+}
+
+.drop-down__header-arrow-expand {
+    @extend %drop-down__header-arrow;
+    background: url('../../styles/icons/arrow-up.svg') center no-repeat;
+}
+
+.drop-down__date-picker {}
+
+.drop-down__list {}
