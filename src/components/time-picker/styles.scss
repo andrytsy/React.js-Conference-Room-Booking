@@ -1,6 +1,5 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
-@import '../../styles/icons.scss';
 
 .time-picker__header {
     margin-top: 20px;
@@ -18,7 +17,7 @@
 }
 
 .group__plus {
-    @include plus('../../styles/icons/plus.svg', $medium-gray);
+    background: url('../../styles/icons/plus.svg') center no-repeat;
     @include border-radius(5px);
     height: 30px;
     width: 30px;
@@ -32,7 +31,7 @@
 }
 
 .group__minus {
-    @include minus('../../styles/icons/minus.svg', $medium-gray);
+    background: url('../../styles/icons/minus.svg') center no-repeat;
     @include border-radius(5px);
     height: 30px;
     width: 30px;

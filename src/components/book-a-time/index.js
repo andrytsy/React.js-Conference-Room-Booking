@@ -15,8 +15,9 @@ class BookTime extends Component {
     clickHandler(event) {
         const { callback } = this.props
         let time = event.target.innerText
-
-        callback(time)
+        
+        if (time && time.length < 15)
+            callback(time)
     }
 
     render() {
