@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import days from '../../fixtures/days'
 import './styles.scss'
 
 
@@ -51,21 +52,7 @@ class DayPicker extends Component {
         monthDay = date.getDate()
         weekDay = date.getDay()
 
-        return monthDay + ' ' + this.getWeekDayText(weekDay)
-    }
-
-    getWeekDayText(day) {
-        let days = [
-            'Воскресенье',
-            'Понедельник',
-            'Вторник',
-            'Среда',
-            'Четверг',
-            'Пятница',
-            'Суббота'
-        ]
-
-        return days[day]
+        return monthDay + ' ' + days[weekDay]
     }
 }
 

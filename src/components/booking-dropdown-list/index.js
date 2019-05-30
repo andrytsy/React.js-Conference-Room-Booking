@@ -53,17 +53,29 @@ class BookingDropDown extends Component {
 
         return (
             <div>
-                <div className="drop-down__date-picker">
+                <div className="drop-down__date-pickers">
                     <span>
-                        С <input value = { dateStart } onChange = { dateCallback.bind(this, 'dateStart') } />
-                        По <input value = { dateEnd } onChange = { dateCallback.bind(this, 'dateEnd') } />
+                        C
+                        <input 
+                            className="drop-down__date-picker"
+                            value = { dateStart } 
+                            onChange = { dateCallback.bind(this, 'dateStart') }
+                        />
+                    </span>
+                    <span>
+                        По 
+                        <input 
+                            className="drop-down__date-picker"
+                            value = { dateEnd } 
+                            onChange = { dateCallback.bind(this, 'dateEnd') } 
+                        />
                     </span>
                 </div>
                 <div className="drop-down__list">
-                    <div>
+                    <div className="drop-down__list-header">
                         Переодичность
                     </div>
-                    <div>
+                    <div className="drop-down__list-items">
                         { this.getDaysList() }
                     </div>
                 </div>
@@ -75,12 +87,20 @@ class BookingDropDown extends Component {
         const { days, daysCallback } = this.props
 
         return allDays.map(day => (
-            <div key = { day }>
+            <div className="drop-down__list-item" key = { day }>
                 <input type="checkbox" 
-                    defaultChecked = { ~days.indexOf(day) } 
+                    name = { day }
+                    className="drop-down__list-item-checkbox"
+                    checked = { ~days.indexOf(day) }
                     onChange = { daysCallback.bind(this, day)}
                 />
-                { day }
+                <label 
+                    htmlFor = { day } 
+                    className="drop-down__list-item-label"
+                    onClick = { daysCallback.bind(this, day)}
+                >
+                    { day }
+                </label>
             </div>
 
         ))

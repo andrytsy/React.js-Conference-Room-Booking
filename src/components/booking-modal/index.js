@@ -71,16 +71,26 @@ class BookingModal extends Component {
         return true
     }
 
-    dateHandler(field, value) {
+    dateHandler(field, event) {
+        let value = event.target.value
         this.setState({ [field]: value})
     }
 
     daysHandler(day) {
-        // this.state.
+        let days = this.state.days.slice()
+
+        if (~days.indexOf(day))
+            days = days.filter(_day => _day !== day)
+        else
+            days.push(day)
+
+        this.setState({ days })
+
+        console.log(this.state.days);
     }
 
     render() {
-        const { save, close } = this.props
+        const { close } = this.props
  
         return (
             <div className="wrapper">
