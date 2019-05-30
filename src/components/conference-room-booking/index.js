@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import DayPicker from '../day-picker'
 import BookTime from '../book-a-time'
+import Modal from '../booking-modal'
 import './styles.scss'
 
 class ConferenceRoomBooking extends Component {
@@ -11,16 +12,13 @@ class ConferenceRoomBooking extends Component {
     }
 
     state = {
-        currentDay: 0
+        currentDay: 0,
+        showModal: false
     }
 
     changeBookingDayHandler(currentDay) {
         this.setState({ currentDay })
         // routing
-    }
-
-    timeSelectHandler() {
-        console.log('click!');
     }
 
     render() {
@@ -36,6 +34,7 @@ class ConferenceRoomBooking extends Component {
                 <div className="booking__content">
                     { this.getColums() }
                 </div>
+                { this.getModal() }                
             </div>
         )
     }
@@ -46,13 +45,33 @@ class ConferenceRoomBooking extends Component {
 
         return columns.map((col, i) => 
             <BookTime 
-                callback = { this.timeSelectHandler.bind(this) }
+                callback = { this.toggleModal.bind(this) }
                 title = { col.title } 
                 color = { col.color}
                 data = { col.items } 
                 key = { i } 
             />
         )
+    }
+
+    toggleModal() {
+        this.setState({ showModal: !this.state.showModal })
+    }
+
+    getModal() {
+        if (this.state.showModal){
+            return (
+                <Modal 
+                    close = { this.toggleModal.bind(this) } 
+                    save = { this.bookRoom.bind(this) } 
+                /> 
+            )
+        }
+        return null 
+    }
+
+    bookRoom() {
+        this.toggleModal()
     }
 }
 

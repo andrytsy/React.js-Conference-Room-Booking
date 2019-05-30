@@ -95,8 +95,6 @@ class BookTime extends Component {
         let { color } = this.props || 'gray'
         
         let isActive = data.find(item => item.time && ~item.time.indexOf(itemDate)) 
-        console.log(this.isCompleted(itemDate));
-        
 
         if (isActive) {
             return color + '-book-time__time-list-item_active'
