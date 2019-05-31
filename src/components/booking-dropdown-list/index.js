@@ -43,7 +43,11 @@ class BookingDropDown extends Component {
                         }
                     ></span>
                 </div>
-                { expand ? this.getElements() : null }
+                { 
+                    expand 
+                        ? this.getElements() 
+                        : null 
+                }
             </div>
         )
     }
@@ -83,6 +87,7 @@ class BookingDropDown extends Component {
         )
     }
 
+    // todo Add to new component
     getDaysList() {
         const { days, daysCallback } = this.props
 

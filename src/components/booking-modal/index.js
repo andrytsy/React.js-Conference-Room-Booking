@@ -18,7 +18,8 @@ class BookingModal extends Component {
         endTime: '',
         dateStart: '23.06.2019',
         dateEnd: '29.06.2019',
-        days: ['Четверг']
+        days: ['Четверг'],
+        validationMessage: ''
     }
 
     componentDidMount() {
@@ -60,15 +61,36 @@ class BookingModal extends Component {
 
     saveHandler() {
         const { save } = this.props
-        let isValid = this.validation()
+        let validationMessage = this.getValidationMessage()
 
-        if (isValid)
+        if (!validationMessage)
             save()
+        
+        this.setState({ validationMessage })
     }
 
     // todo
-    validation() {
-        return true
+    getValidationMessage() {
+        let startTime = this.state.startTime
+        let endTime = this.state.endTime
+        let date = new Date()
+        let currentTime = date.getHours() + ':' + date.getMinutes()
+        let notValidEndTime = (this.parseTime(endTime) - this.parseTime(startTime)) <= 0
+        let notValidStartTime = (this.parseTime(startTime) - this.parseTime(currentTime)) <= 0
+
+        if (notValidEndTime)
+            return 'Время окончания должно быть больше вренеми начала!'
+
+        if (notValidStartTime)
+            return 'Время начала меньше текущего времени!'
+
+        return ''
+    }
+
+    // todo in reducer
+    parseTime(time) {
+        let split = time.split(':')
+        return parseInt(split[0]) * 60 + parseInt(split[1])
     }
 
     dateHandler(field, event) {
@@ -85,8 +107,6 @@ class BookingModal extends Component {
             days.push(day)
 
         this.setState({ days })
-
-        console.log(this.state.days);
     }
 
     render() {
@@ -135,6 +155,9 @@ class BookingModal extends Component {
                             daysCallback = { this.daysHandler.bind(this)}
                         />
                     </div>
+                    
+                    { this.state.validationMessage ? <p className="booking-modal__validation">{ this.state.validationMessage }</p> : null }
+
                     <div className="booking-modal__btn">
                         <input className="booking-modal__btn-close" type="button" value="Отмена" onClick = { close.bind(this) } />
                         <input className="booking-modal__btn-save" type="button" value="Сохранить" onClick = { this.saveHandler.bind(this) }/>
