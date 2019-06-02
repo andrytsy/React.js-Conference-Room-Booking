@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { setDay } from '../../redux/actions'
 import days from '../../fixtures/days'
 import './styles.scss'
 
 class BookingDaysList extends Component {
     static propTypes = {
         range: PropTypes.number.isRequired,
-        active: PropTypes.number.isRequired,
-        callback: PropTypes.func.isRequired
-    }
-
-    clickHandler(day) {
-
+        active: PropTypes.number.isRequired
     }
 
     render() {
@@ -23,7 +20,7 @@ class BookingDaysList extends Component {
     }
 
     getButtons() {
-        const { range, active, callback } = this.props
+        const { range, active, setDay } = this.props
         let elemens = []
 
         for (let i = 0; i < range; i++) {
@@ -32,7 +29,7 @@ class BookingDaysList extends Component {
                     type="button" 
                     className = { active === i ? 'day-picker__btn_active' : 'day-picker__btn_default'} 
                     value = { this.getButtonsText(i) } 
-                    onClick = { callback.bind(this, i) }
+                    onClick = { setDay.bind(this, i) }
                     key = { i } />
             )
             elemens.push(elem)
@@ -55,4 +52,4 @@ class BookingDaysList extends Component {
     }
 }
 
-export default BookingDaysList
+export default connect(state => ({ active: state.currentDay }), { setDay })(BookingDaysList)

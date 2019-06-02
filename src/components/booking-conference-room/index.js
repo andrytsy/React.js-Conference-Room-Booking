@@ -11,12 +11,6 @@ class ConferenceRoomBooking extends Component {
         columns: PropTypes.array.isRequired
     }
 
-    state = {
-        currentDay: 0,
-        showModal: false,
-        selectedTime: ''
-    }
-
     changeBookingDayHandler(currentDay) {
         this.setState({ currentDay })
         // routing
@@ -26,16 +20,13 @@ class ConferenceRoomBooking extends Component {
         return (
             <div className="booking">
                 <div className="booking__day-picker">
-                    <DaysList 
-                        range = { 7 } 
-                        active = { this.state.currentDay }
-                        callback = { this.changeBookingDayHandler.bind(this) }
-                    />
+                    <DaysList range = { 7 } />
                 </div>
                 <div className="booking__content">
                     { this.getColums() }
                 </div>
-                { this.getModal() }                
+
+                <Modal />               
             </div>
         )
     }
@@ -45,7 +36,6 @@ class ConferenceRoomBooking extends Component {
         
         return columns.map((col, i) => 
             <BookingTime 
-                callback = { this.doSelectTime.bind(this) }
                 title = { col.title } 
                 color = { col.color}
                 data = { col.items } 
@@ -53,33 +43,14 @@ class ConferenceRoomBooking extends Component {
             />
         )
     }
+}
 
-    doSelectTime(time) {
-        this.setState({ selectedTime: time })
-        this.toggleModal()
-    }
-
-    toggleModal() {
-        this.setState({ showModal: !this.state.showModal })
-    }
-
-    getModal() {
-        if (this.state.showModal) {
-            return (
-                <Modal 
-                    defaultTime = { this.state.selectedTime }
-                    close = { this.toggleModal.bind(this) } 
-                    save = { this.bookRoom.bind(this) } 
-                /> 
-            )
-        }
-
-        return null 
-    }
-
-    bookRoom() {
-        this.toggleModal()
+function mapStateToProps(state) {
+    return {
+        columns: state.columns,
+        currentDay: state.currentDay
     }
 }
 
-export default connect(state => ({ columns: state.columns }))(ConferenceRoomBooking)
+
+export default connect(mapStateToProps)(ConferenceRoomBooking)

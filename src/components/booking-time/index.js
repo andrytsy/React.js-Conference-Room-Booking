@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { editBookingTime } from '../../redux/actions'
 import PropTypes from 'prop-types'
 import './styles.scss'
 
@@ -13,11 +15,11 @@ class BookingTime extends Component {
     }
 
     clickHandler(event) {
-        const { callback } = this.props
+        const { editBookingTime } = this.props
         let time = event.target.innerText
         
         if (time && time.length < 15)
-            callback(time)
+            editBookingTime(time)
     }
 
     render() {
@@ -139,4 +141,8 @@ class BookingTime extends Component {
     }
 }
 
-export default BookingTime
+function mapStateToProps(state) {
+    return {state}
+}
+
+export default connect(mapStateToProps, { editBookingTime })(BookingTime)

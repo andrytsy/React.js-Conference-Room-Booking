@@ -1,22 +1,18 @@
-import { EDIT_TIME, SET_DAY } from '../constants'
+import { EDIT_TIME } from '../constants'
 import defaultData from '../fixtures' 
 
 export default (state = defaultData, action) => {
-    const { type, time, day } = action
-
+    const { type, time, currentDay } = action
+    console.log(state, action);
+    
     switch (type) {
         case EDIT_TIME:
             return {
-                ...state,
-                editableTime: time
+                columns: state.slice(),
+                editableTime: time,
+                currentDay: currentDay || 0
             }
         
-        case SET_DAY: 
-            return {
-                ...state,
-                currentDay: day
-            }
-
         default: 
             return {
                 columns: state,

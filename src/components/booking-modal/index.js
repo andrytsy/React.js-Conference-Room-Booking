@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+// import PropTypes from 'prop-types' ???
+import { editBookingTime } from '../../redux/actions'
 import TimePicker from '../ui-kit/time-picker'
 import BookingDropDown from '../booking-dropdown-list'
 import './styles.scss'
 
 class BookingModal extends Component {
-    static propTypes = {
-        defaultTime: PropTypes.string.isRequired,
-        save: PropTypes.func.isRequired,
-        close: PropTypes.func.isRequired
-    }
-
     state = {
         userName: '',
         eventName: '',
@@ -22,12 +18,19 @@ class BookingModal extends Component {
         validationMessage: ''
     }
 
-    componentDidMount() {
-        const { defaultTime } = this.props
-        let split = defaultTime.split('-')
 
-        this.setState({ startTime: split[0] })
-        this.setState({ endTime: split[1] })
+    // РЕКУРСИЯ на update :(
+    componentDidMount() {
+        const { editableTime } = this.props
+        
+        console.log(editableTime);
+        
+        if (editableTime) {
+            let split = editableTime.split('-')
+
+            this.setState({ startTime: split[0] })
+            this.setState({ endTime: split[1] })
+        }
     }
 
     inputHandler(field, event) {
@@ -57,6 +60,11 @@ class BookingModal extends Component {
         if (hours < 8 || (hours >= 22 && minutes !== '00'))
             return null
         return hours + ':' + minutes
+    }
+
+    closeHandler() {
+        const { editBookingTime } = this.props
+        editBookingTime(null)
     }
 
     saveHandler() {
@@ -110,8 +118,14 @@ class BookingModal extends Component {
     }
 
     render() {
-        const { close } = this.props
- 
+        const { editableTime } = this.props
+        
+        return editableTime 
+            ? this.getElements() 
+            : null 
+    }
+
+    getElements() {
         return (
             <div className="wrapper">
                 <div className="booking-modal">
@@ -159,7 +173,7 @@ class BookingModal extends Component {
                     { this.state.validationMessage ? <p className="booking-modal__validation">{ this.state.validationMessage }</p> : null }
 
                     <div className="booking-modal__btn">
-                        <input className="booking-modal__btn-close" type="button" value="Отмена" onClick = { close.bind(this) } />
+                        <input className="booking-modal__btn-close" type="button" value="Отмена" onClick = { this.closeHandler.bind(this) } />
                         <input className="booking-modal__btn-save" type="button" value="Сохранить" onClick = { this.saveHandler.bind(this) }/>
                     </div>
                 </div>
@@ -168,4 +182,10 @@ class BookingModal extends Component {
     }
 }
 
-export default BookingModal
+function mapStateToProps(state) {
+    return {
+        editableTime: state.editableTime
+    }
+}
+
+export default connect(mapStateToProps, { editBookingTime })(BookingModal)
