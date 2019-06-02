@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import TimePicker from '../time-picker'
+import TimePicker from '../ui-kit/time-picker'
 import BookingDropDown from '../booking-dropdown-list'
 import './styles.scss'
 

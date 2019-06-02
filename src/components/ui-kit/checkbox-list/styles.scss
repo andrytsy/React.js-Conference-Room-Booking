@@ -1,0 +1,30 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.checkbox-list-item {
+    margin-bottom: 10px;
+    @include user-select;
+}
+
+.checkbox-list-item__checkbox {
+    &[type=checkbox] {
+        display: none;
+    }
+
+    &[type=checkbox] + label {
+        height: 20px;
+        width: 20px;
+        margin-right: 10px;
+        display: inline-block;
+        border: 1px solid $medium-gray;
+        @include border-radius(5px);
+        vertical-align: bottom;
+        cursor: pointer;
+        text-indent: 30px;
+    }
+    &:checked + label {
+        background: url('../../../styles/icons/checked.svg') center no-repeat;
+        border-color: $indigo;
+        color: $black;
+    }
+}

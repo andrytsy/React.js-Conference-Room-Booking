@@ -1,0 +1,22 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.time-picker__header {
+    margin-top: 20px;
+}
+
+.time-picker__group {
+    @include user-select;
+    @include border-radius(5px);
+    margin: 10px 0px;
+    padding: 5px;
+    height: 30px;
+    background-color: $gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.group__time {
+    margin: auto;
+}

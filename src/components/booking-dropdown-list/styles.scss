@@ -6,41 +6,31 @@
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-}
-
-%drop-down__header-text {
-    height: 30px;
-    line-height: 30px;
     color: $medium-gray;
+    stroke: $medium-gray;
+    stroke-width:2px;
+    fill:none; 
+    cursor: pointer;
 
     &:hover {
         color: $indigo;
+        stroke: $indigo;
     }
 }
 
-.drop-down__header-text-default {
-    @extend %drop-down__header-text;
-}
-
 .drop-down__header-text-active {
-    @extend %drop-down__header-text;
     color: $indigo;
     margin-bottom: 30px;
 }
 
-%drop-down__header-arrow {
-    height: 30px;
-    width: 30px;
-}
-
 .drop-down__header-arrow-collapse {
-    @extend %drop-down__header-arrow;
-    background: url('../../styles/icons/arrow-down.svg') center no-repeat;
+    height: 24px;
 }
 
 .drop-down__header-arrow-expand {
-    @extend %drop-down__header-arrow;
-    background: url('../../styles/icons/arrow-up.svg') center no-repeat;
+    transform: rotateX(180deg);
+    stroke: $indigo;
+    height: 24px;
 }
 
 .drop-down__date-pickers {
@@ -70,32 +60,4 @@
 
 .drop-down__list-items {
     color: $medium-gray;
-}
-
-.drop-down__list-item {
-    margin-bottom: 10px;
-    @include user-select;
-}
-
-.drop-down__list-item-checkbox {
-    &[type=checkbox] {
-        display: none;
-    }
-
-    &[type=checkbox] + label {
-        height: 20px;
-        width: 20px;
-        margin-right: 10px;
-        display: inline-block;
-        border: 1px solid $medium-gray;
-        @include border-radius(5px);
-        vertical-align: bottom;
-        cursor: pointer;
-        text-indent: 30px;
-    }
-    &:checked + label {
-        background: url('../../styles/icons/checked.svg') center no-repeat;
-        border-color: $indigo;
-        color: $black;
-    }
 }

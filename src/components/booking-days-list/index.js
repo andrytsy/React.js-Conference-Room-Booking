@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import days from '../../fixtures/days'
 import './styles.scss'
 
-
-class DayPicker extends Component {
+class BookingDaysList extends Component {
     static propTypes = {
         range: PropTypes.number.isRequired,
         active: PropTypes.number.isRequired,
@@ -56,4 +55,4 @@ class DayPicker extends Component {
     }
 }
 
-export default DayPicker
+export default BookingDaysList

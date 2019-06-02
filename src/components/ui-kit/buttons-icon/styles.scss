@@ -1,0 +1,13 @@
+@import '../../../styles/variables.scss';
+
+.default-button-icon {
+    fill:none; 
+    stroke-width:2px;
+    stroke: $medium-gray;
+    background-color: $white;
+    cursor: pointer;
+
+    &:hover {
+        stroke: $indigo;
+    }
+}

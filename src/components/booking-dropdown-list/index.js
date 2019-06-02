@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import allDays from '../../fixtures/days'
+import { ButtonArrowDown } from '../ui-kit/buttons-icon'
+import CheckboxList from '../ui-kit/checkbox-list'
 import './styles.scss'
 
 class BookingDropDown extends Component {
@@ -26,34 +28,18 @@ class BookingDropDown extends Component {
         return (
             <div>
                 <div className="drop-down__header" onClick = { this.toggleList.bind(this) }>
-                    <span 
-                        className = { 
-                            expand 
-                                ? 'drop-down__header-text-active' 
-                                : 'drop-down__header-text-default' 
-                        }
-                    >
+                    <span className = { expand ? 'drop-down__header-text-active' : null }>
                         Регулярное бронирование
                     </span>
-                    <span 
-                        className = { 
-                            expand 
-                                ? 'drop-down__header-arrow-expand' 
-                                : 'drop-down__header-arrow-collapse' 
-                        }
-                    ></span>
+                    <ButtonArrowDown css = { expand ? 'drop-down__header-arrow-expand' : 'drop-down__header-arrow-collapse' } />
                 </div>
-                { 
-                    expand 
-                        ? this.getElements() 
-                        : null 
-                }
+                { expand ? this.getElements() : null }
             </div>
         )
     }
 
     getElements() {
-        const { dateStart, dateEnd, dateCallback } = this.props
+        const { dateStart, dateEnd, dateCallback, days, daysCallback } = this.props
 
         return (
             <div>
@@ -80,35 +66,15 @@ class BookingDropDown extends Component {
                         Переодичность
                     </div>
                     <div className="drop-down__list-items">
-                        { this.getDaysList() }
+                        <CheckboxList 
+                            list = { allDays } 
+                            selected = { days } 
+                            callback = { daysCallback }
+                        />
                     </div>
                 </div>
             </div>
         )
-    }
-
-    // todo Add to new component
-    getDaysList() {
-        const { days, daysCallback } = this.props
-
-        return allDays.map(day => (
-            <div className="drop-down__list-item" key = { day }>
-                <input type="checkbox" 
-                    name = { day }
-                    className="drop-down__list-item-checkbox"
-                    checked = { ~days.indexOf(day) }
-                    onChange = { daysCallback.bind(this, day)}
-                />
-                <label 
-                    htmlFor = { day } 
-                    className="drop-down__list-item-label"
-                    onClick = { daysCallback.bind(this, day)}
-                >
-                    { day }
-                </label>
-            </div>
-
-        ))
     }
 }
 

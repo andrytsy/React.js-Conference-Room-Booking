@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import './styles.scss'
 
-class BookTime extends Component {
+class BookingTime extends Component {
     static propTypes = {
         title: PropTypes.string.isRequired,
         data: PropTypes.array.isRequired,
@@ -139,4 +139,4 @@ class BookTime extends Component {
     }
 }
 
-export default BookTime
+export default BookingTime

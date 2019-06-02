@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import DayPicker from '../day-picker'
-import BookTime from '../book-a-time'
+import DaysList from '../booking-days-list'
+import BookingTime from '../booking-time'
 import Modal from '../booking-modal'
 import './styles.scss'
 
@@ -26,7 +26,7 @@ class ConferenceRoomBooking extends Component {
         return (
             <div className="booking">
                 <div className="booking__day-picker">
-                    <DayPicker 
+                    <DaysList 
                         range = { 7 } 
                         active = { this.state.currentDay }
                         callback = { this.changeBookingDayHandler.bind(this) }
@@ -44,7 +44,7 @@ class ConferenceRoomBooking extends Component {
         const { columns } = this.props
         
         return columns.map((col, i) => 
-            <BookTime 
+            <BookingTime 
                 callback = { this.doSelectTime.bind(this) }
                 title = { col.title } 
                 color = { col.color}
