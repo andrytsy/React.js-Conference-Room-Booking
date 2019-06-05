@@ -26,7 +26,7 @@ class ConferenceRoomBooking extends Component {
                     { this.getColums() }
                 </div>
 
-                <Modal />               
+                <Modal />
             </div>
         )
     }
@@ -37,7 +37,7 @@ class ConferenceRoomBooking extends Component {
         return columns.map((col, i) => 
             <BookingTime 
                 title = { col.title } 
-                color = { col.color}
+                color = { col.color }
                 data = { col.items } 
                 key = { i } 
             />

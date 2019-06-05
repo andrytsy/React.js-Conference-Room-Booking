@@ -1,17 +1,23 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { ButtonPlus, ButtonMinus } from '../buttons-icon'
 import './styles.scss'
 
 class TimePicker extends Component {
+    static propTypes = {
+        time: PropTypes.string.isRequired,
+        callback: PropTypes.func.isRequired
+    }
+
     render() {
-        const { time, minusCallback, plusCallback } = this.props
+        const { time, callback } = this.props
         return (
             <div>
                 { this.getTitle() }
                 <div className="time-picker__group">
-                    <ButtonMinus callback = { minusCallback.bind(this) } />
+                    <ButtonMinus callback = { callback.bind(this, 'minus', time) } />
                     <span className="group__time">{ time }</span>
-                    <ButtonPlus callback = { plusCallback.bind(this) } />
+                    <ButtonPlus callback = { callback.bind(this, 'plus', time) } />
                 </div>
             </div>
         )

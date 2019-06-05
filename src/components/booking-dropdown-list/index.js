@@ -48,16 +48,16 @@ class BookingDropDown extends Component {
                         C
                         <input 
                             className="drop-down__date-picker"
-                            value = { dateStart } 
-                            onChange = { dateCallback.bind(this, 'dateStart') }
+                            defaultValue = { dateStart } 
+                            onBlur = { dateCallback.bind(this, 'dateStart') }
                         />
                     </span>
                     <span>
                         По 
                         <input 
                             className="drop-down__date-picker"
-                            value = { dateEnd } 
-                            onChange = { dateCallback.bind(this, 'dateEnd') } 
+                            defaultValue = { dateEnd } 
+                            onBlur = { dateCallback.bind(this, 'dateEnd') } 
                         />
                     </span>
                 </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { editBookingTime } from '../../redux/actions'
+import { editBookingItem } from '../../redux/actions'
 import PropTypes from 'prop-types'
 import './styles.scss'
 
@@ -8,18 +8,15 @@ class BookingTime extends Component {
     static propTypes = {
         title: PropTypes.string.isRequired,
         data: PropTypes.array.isRequired,
-        callback: PropTypes.func.isRequired,
-        start: PropTypes.number,
-        end: PropTypes.number,
         color: PropTypes.string
     }
 
     clickHandler(event) {
-        const { editBookingTime } = this.props
+        const { editBookingItem } = this.props
         let time = event.target.innerText
         
         if (time && time.length < 15)
-            editBookingTime(time)
+            editBookingItem(time)
     }
 
     render() {
@@ -145,4 +142,4 @@ function mapStateToProps(state) {
     return {state}
 }
 
-export default connect(mapStateToProps, { editBookingTime })(BookingTime)
+export default connect(mapStateToProps, { editBookingItem })(BookingTime)
