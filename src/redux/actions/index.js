@@ -1,9 +1,9 @@
 import { EDIT_TIME, SAVE_EDIT, CANCEL_EDIT_TIME, SET_TEXT, SET_TIME, SET_DAYS, SET_DAY } from '../constants'
 
-export function editBookingItem(time) {
+export function editBookingItem(item) {
     return {
         type: EDIT_TIME,
-        time
+        item
     }
 }
 

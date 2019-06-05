@@ -11,12 +11,9 @@ class BookingTime extends Component {
         color: PropTypes.string
     }
 
-    clickHandler(event) {
+    clickHandler(item) {
         const { editBookingItem } = this.props
-        let time = event.target.innerText
-        
-        if (time && time.length < 15)
-            editBookingItem(time)
+        editBookingItem(item)
     }
 
     render() {
@@ -28,9 +25,7 @@ class BookingTime extends Component {
                 <div className = { color + '-book-time__header'}>
                     { title }
                 </div>
-                <div onClick = { this.clickHandler.bind(this) } >
-                    { this.getTimeListElements() }
-                </div>
+                { this.getTimeListElements() }
             </div>
         )
     }
@@ -47,15 +42,16 @@ class BookingTime extends Component {
                     key = { i } 
                     className = { className }
                     style = { style }
+                    onClick = { this.clickHandler.bind(this, item) }
                 >
                     <span className="book-time__time-list-item-event">
-                        { item.event }
+                        { item.eventName }
                     </span>
                     <span>
                         { item.time }
                     </span>
                     <span className="book-time__time-list-item-user">
-                        { item.user }
+                        { item.userName }
                     </span>
                 </div>
             )
@@ -124,7 +120,7 @@ class BookingTime extends Component {
     getHeightItem(timeRange) {
         let split = timeRange.split('-')
         let defaultHeight = 70
-        let defaultMargin = 5
+        let defaultMargin = 10
         let rowsQuantity = (this.parseTime(split[1]) - this.parseTime(split[0])) / 30
         
         return rowsQuantity !== 1 

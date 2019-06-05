@@ -30,22 +30,22 @@ function calculateTime(operator, time) {
 }
 
 export default (state = defaultData, action) => {
-    const { type, time, key, day, operator, text, validationMessage } = action
+    const { type, item, time, key, day, operator, text, validationMessage } = action
 
     switch (type) {
         case EDIT_TIME:
-            let [ startTime, endTime ] = time.split('-')
+            let [ startTime, endTime ] = item.time.split('-')
 
             return {
                 ...state,
                 editableItem: {
-                    userName: '',
-                    eventName: '',
+                    userName: item.userName || '',
+                    eventName: item.eventName || '',
                     startTime: startTime.trim(),
                     endTime: endTime.trim(),
-                    dateStart: getDefaultDate(),
-                    dateEnd: getDefaultDate(),
-                    days: ['Четверг']
+                    dateStart: item.dateStart || getDefaultDate(),
+                    dateEnd: item.dateEnd || getDefaultDate(),
+                    days: item.days || ['Четверг']
                 }
             }
 

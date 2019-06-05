@@ -92,15 +92,29 @@ class BookingModal extends Component {
                             dateEnd = { dateEnd } 
                             days = { days } 
                             dateCallback = { this.textHandler.bind(this) }
-                            daysCallback = { this.daysHandler.bind(this)}
+                            daysCallback = { this.daysHandler.bind(this) }
                         />
                     </div>
                     
-                    { validationMessage ? <p className="booking-modal__validation">{ validationMessage }</p> : null }
+                    { 
+                        validationMessage 
+                            ? <p className="booking-modal__validation">{ validationMessage }</p> 
+                            : null 
+                    }
 
                     <div className="booking-modal__btn">
-                        <input className="booking-modal__btn-close" type="button" value="Отмена" onClick = { this.closeHandler.bind(this) } />
-                        <input className="booking-modal__btn-save" type="button" value="Сохранить" onClick = { this.saveHandler.bind(this) }/>
+                        <input 
+                            className="booking-modal__btn-close" 
+                            type="button" 
+                            value="Отмена" 
+                            onClick = { this.closeHandler.bind(this) } 
+                        />
+                        <input 
+                            className="booking-modal__btn-save" 
+                            type="button" 
+                            value="Сохранить" 
+                            onClick = { this.saveHandler.bind(this) }
+                        />
                     </div>
                 </div>
             </div>

@@ -4,18 +4,18 @@ export default [
         color: 'aqua',
         items: [
             {
-                event: 'Meeting',
-                user: 'Ivanov',
+                eventName: 'Meeting',
+                userName: 'Ivanov',
                 time: '8:00 - 9:30'
             },
             {
-                event: 'Meeting',
-                user: 'Ivanov',
+                eventName: 'Meeting',
+                userName: 'Ivanov',
                 time: '10:00 - 11:30'
             },
             {
-                event: 'Meeting',
-                user: 'Ivanov',
+                eventName: 'Meeting',
+                userName: 'Ivanov',
                 time: '14:00 - 17:00'
             }
         ]
@@ -25,13 +25,13 @@ export default [
         color: 'orange',
         items: [
             {
-                event: 'Conference',
-                user: 'Perov',
+                eventName: 'Conference',
+                userName: 'Perov',
                 time: '9:00 - 10:30'
             },
             {
-                event: 'Bussines meeting',
-                user: 'Ivanov',
+                eventName: 'Bussines meeting',
+                userName: 'Ivanov',
                 time: '11:30 - 17:00'
             }
         ]
@@ -46,18 +46,18 @@ export default [
         color: 'purple',
         items: [
             {
-                event: 'Conference',
-                user: 'Perov',
+                eventName: 'Conference',
+                userName: 'Perov',
                 time: '9:00 - 9:30'
             },
             {
-                event: 'Bussines meeting',
-                user: 'Ivanov',
+                eventName: 'Bussines meeting',
+                userName: 'Ivanov',
                 time: '11:00 - 11:30'
             },
             {
-                event: 'English',
-                user: 'Jukov',
+                eventName: 'English',
+                userName: 'Jukov',
                 time: '12:00 - 15:30'
             }
         ]
