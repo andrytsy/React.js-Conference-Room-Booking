@@ -31,3 +31,29 @@
     color: $white;
     background: $indigo;
 }
+
+// Mobile
+@media screen and (max-width: 650px) {
+    .day-picker {
+        overflow: scroll;
+    }
+    .day-picker::-webkit-scrollbar { 
+        display: none; 
+    }
+
+    %day-picker__btn {
+        margin: 5px;
+        padding: 16px 20px;
+        color: $indigo;
+        background-color: inherit;
+        border: 1px solid $indigo;
+        @include border-radius(5px);
+        font-family: 'Libre Franklin Regular';
+        cursor: pointer;
+    
+        &:hover {
+            color: $white;
+            background: $indigo;
+        }
+    }
+}

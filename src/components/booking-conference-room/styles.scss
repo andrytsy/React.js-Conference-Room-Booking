@@ -14,3 +14,10 @@
     padding: 100px 0px;
     background-color: $white;
 }
+
+@media screen and (max-width: 650px) {
+    .booking__content-radio-list {
+        text-align: center;
+        padding: 0px 20px;
+    }
+}

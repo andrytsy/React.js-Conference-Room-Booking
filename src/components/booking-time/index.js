@@ -73,8 +73,8 @@ class BookingTime extends Component {
                     defaultTimeList.splice(from, count, item)
                 } 
             })
-        }
-
+        } 
+        
         return defaultTimeList
     }
 
@@ -135,7 +135,7 @@ class BookingTime extends Component {
 }
 
 function mapStateToProps(state) {
-    return {state}
+    return { state }
 }
 
 export default connect(mapStateToProps, { editBookingItem })(BookingTime)

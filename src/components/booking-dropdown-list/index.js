@@ -67,7 +67,7 @@ class BookingDropDown extends Component {
                     </div>
                     <div className="drop-down__list-items">
                         <CheckboxList 
-                            list = { allDays } 
+                            list = { allDays.full } 
                             selected = { days } 
                             callback = { daysCallback }
                         />

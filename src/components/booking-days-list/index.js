@@ -27,8 +27,8 @@ class BookingDaysList extends Component {
             let elem = (
                 <input 
                     type="button" 
-                    className = { active === i ? 'day-picker__btn_active' : 'day-picker__btn_default'} 
-                    value = { this.getButtonsText(i) } 
+                    className = { active === i ? 'day-picker__btn_active' : 'day-picker__btn_default' }
+                    value = { this.getButtonsText(i) }
                     onClick = { setDay.bind(this, i) }
                     key = { i } />
             )
@@ -39,6 +39,8 @@ class BookingDaysList extends Component {
     }
 
     getButtonsText(value) {
+        const { isMobile } = this.props
+        
         let date = new Date()
         let monthDay = date.getDate()
         let weekDay = null
@@ -48,8 +50,19 @@ class BookingDaysList extends Component {
         monthDay = date.getDate()
         weekDay = date.getDay()
 
-        return monthDay + ' ' + days[weekDay]
+        let weekDayName = isMobile
+            ? days.short[weekDay]
+            : days.full[weekDay]
+
+        return monthDay + ' ' + weekDayName
     }
 }
 
-export default connect(state => ({ active: state.currentDay }), { setDay })(BookingDaysList)
+function mapStateToProps(state) {
+    return { 
+        active: state.currentDay,
+        isMobile: state.isMobile
+    }
+}
+
+export default connect(mapStateToProps, { setDay })(BookingDaysList)

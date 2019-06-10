@@ -1,4 +1,4 @@
-import { EDIT_TIME, SAVE_EDIT, CANCEL_EDIT_TIME, SET_TEXT, SET_TIME, SET_DAYS, SET_DAY } from '../constants'
+import { EDIT_TIME, SAVE_EDIT, CANCEL_EDIT_TIME, SET_TEXT, SET_TIME, SET_DAYS, SET_DAY, SET_COLUMN } from '../constants'
 
 export function editBookingItem(item) {
     return {
@@ -47,5 +47,12 @@ export function setDay(day) {
     return {
         type: SET_DAY,
         day
+    }
+}
+
+export function setColumn(column) {
+    return {
+        type: SET_COLUMN,
+        column
     }
 }

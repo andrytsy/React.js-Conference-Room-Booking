@@ -1,5 +1,7 @@
-import { EDIT_TIME, SAVE_EDIT, CANCEL_EDIT_TIME,  SET_TEXT, SET_TIME, SET_DAYS, SET_DAY } from '../constants'
+import { EDIT_TIME, SAVE_EDIT, CANCEL_EDIT_TIME,  SET_TEXT, SET_TIME, SET_DAYS, SET_DAY, SET_COLUMN } from '../constants'
 import defaultData from '../fixtures'
+import { mobileCheck } from '../../services/mobileService'
+
 
 function getDefaultDate() {
     return new Date().toLocaleDateString()
@@ -30,7 +32,7 @@ function calculateTime(operator, time) {
 }
 
 export default (state = defaultData, action) => {
-    const { type, item, time, key, day, operator, text, validationMessage } = action
+    const { type, item, time, key, day, operator, text, validationMessage, column } = action
 
     switch (type) {
         case EDIT_TIME:
@@ -78,11 +80,16 @@ export default (state = defaultData, action) => {
         case SET_DAY: 
             return { ...state, currentDay: day }
 
+        case SET_COLUMN: 
+            return { ...state, currentColumn: column }
+
         default: 
             return {
                 columns: state,
                 editableItem: null,
-                currentDay: 0
+                currentDay: 0,
+                isMobile: mobileCheck(),
+                currentColumn: 0
             }
     }
 }
